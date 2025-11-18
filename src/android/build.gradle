@@ -6,7 +6,7 @@ repositories{
 }
 
 dependencies {
-   compile(name:'android-sdk-1.1.5', ext:'aar')
+   implementation files('libs/android-sdk-1.1.5.aar')
 }
 
 android {
