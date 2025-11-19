@@ -16,8 +16,9 @@
     </js-module>
 
     <platform name="android">
-        <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
+        
         <source-file src="src/android/libs/android-sdk-1.1.5.aar" target-dir="app/libs" />
+        <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
         <source-file src="src/android/SignicatPlugin.java" target-dir="src/com/signicat/plugin" />
 
         <edit-config file="AndroidManifest.xml" mode="merge" target="/manifest/application">
@@ -104,6 +105,7 @@
     </platform>
 
 </plugin>
+
 
 
 
