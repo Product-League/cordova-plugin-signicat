@@ -32,7 +32,7 @@
 
                         <data
                             android:scheme="${appAuthRedirectScheme}"
-                            android:host="salland-dev.outsystems.app"
+                            android:host="${appAuthRedirectHost}"
                             android:pathPrefix="/broker/app/oidc/response" />
                     </intent-filter>
                 </activity>
@@ -48,7 +48,7 @@
 
                         <data
                             android:scheme="${appAuthRedirectScheme}"
-                            android:host="salland-dev.outsystems.app"
+                            android:host="${appAuthRedirectHost}"
                             android:pathPrefix="/broker/authn/digid/digid-app" />
                     </intent-filter>
                 </activity>
@@ -63,7 +63,7 @@
                         <category android:name="android.intent.category.BROWSABLE" />
                         <data
                             android:scheme="${appAuthRedirectScheme}"
-                            android:host="salland-dev.outsystems.app"
+                            android:host="${appAuthRedirectHost}"
                             android:pathPrefix="/broker/app/redirect/response" />
                     </intent-filter>
         
@@ -103,4 +103,5 @@
     </platform>
 
 </plugin>
+
 
