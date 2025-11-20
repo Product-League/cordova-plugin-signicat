@@ -7,6 +7,8 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 
+
+
 import com.connectis.sdk.ConnectisSDK;
 import com.connectis.sdk.ConnectisSDKConfiguration;
 import com.connectis.sdk.AuthenticationResponseDelegate;
@@ -14,7 +16,7 @@ import com.connectis.sdk.AccessTokenDelegate;
 
 
 public class SignicatPlugin extends CordovaPlugin {
-
+/**
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext)
             throws JSONException {
@@ -115,4 +117,8 @@ public class SignicatPlugin extends CordovaPlugin {
         ConnectisSDK.disableDeviceAuthentication();
         callbackContext.success("deviceAuthDisabled");
     }
+
+**/
 }
+
+
