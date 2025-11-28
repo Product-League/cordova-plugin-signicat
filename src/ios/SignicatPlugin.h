@@ -2,6 +2,7 @@
 #import "Cordova/CDV.h"
 
 
+@class ConnectisSDKConfiguration;
 
 @interface SignicatPlugin : CDVPlugin
 
