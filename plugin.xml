@@ -110,11 +110,12 @@
         <!--<preference name="deployment-target" default="9.0"/>-->
 
         <hook type="before_build" src="hooks/minSDKChanger_iOS.js" />
-        <preference name="IOS_MIN_SDK_VERSION" default="9.0"/>
+        <preference name="IOS_MIN_SDK_VERSION" default="12.0"/>
         
     </platform>
 
 </plugin>
+
 
 
 
