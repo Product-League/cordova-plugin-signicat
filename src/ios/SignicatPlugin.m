@@ -17,7 +17,12 @@
     NSString *brokerAppAcs = config[@"brokerAppAcs"];
     NSString *brokerDigidAppAcs = config[@"brokerDigidAppAcs"];
 
-    ConnectisSDKConfiguration *cfg;
+    ConnectisSDKConfiguration *cfg = [[ConnectisSDKConfiguration alloc] initWithIssuer:issuer
+                                                                           clientID:clientId
+                                                                        redirectURI:redirectUri
+                                                                          loginFlow:( [loginFlow isEqualToString:@"APP_TO_APP"] ?
+                                                                                      ConnectisLoginFlowAppToApp :
+                                                                                      ConnectisLoginFlowWeb )];
 
 }
 
