@@ -89,16 +89,16 @@
 
     <!-- Required: Explicit Swift version for MABS 11.2 (Swift 6) -->
     <config-file target="*-Debug.xcconfig" parent="SWIFT_VERSION">
-        <string>6.0</string>
+        <string>5.9</string>
     </config-file>
 
     <config-file target="*-Release.xcconfig" parent="SWIFT_VERSION">
-        <string>6.0</string>
+        <string>5.9</string>
     </config-file>
 
     <!-- For some MABS versions you MUST also patch project.pbxproj -->
     <config-file target="project.pbxproj" parent="SWIFT_VERSION">
-        <string>6.0</string>
+        <string>5.9</string>
     </config-file>
 
     <!-- Your framework -->
@@ -110,4 +110,5 @@
     </platform>
 
 </plugin>
+
 
