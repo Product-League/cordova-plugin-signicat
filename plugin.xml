@@ -91,7 +91,6 @@
     
         <preference name="UseSwiftLanguageVersion" value="6.0" />
     
-        <!-- Ensure Swift version is set in generated xcconfigs -->
         <config-file target="*-Debug.xcconfig" parent="SWIFT_VERSION">
             <string>6.0</string>
         </config-file>
@@ -99,70 +98,19 @@
             <string>6.0</string>
         </config-file>
     
-        <!-- Ensure Swift runtime embedding -->
         <config-file target="project.pbxproj" parent="ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES">
             <string>YES</string>
         </config-file>
     
-        <!-- Correct runpath so embedded frameworks load -->
         <config-file target="project.pbxproj" parent="LD_RUNPATH_SEARCH_PATHS">
             <string>$(inherited) @executable_path/Frameworks</string>
         </config-file>
 
-
-        
-        <!--
-        <source-file src="src/ios/Dummy.swift" />
-        <framework src="src/ios/ConnectisSDK.framework" custom="true" embed="true" />
-        <preference name="UseSwiftLanguageVersion" default="6.0" />
-        <header-file src="src/ios/SignicatPlugin.h" />
-        <source-file src="src/ios/SignicatPlugin.m" />
-
-        <config-file target="*-Debug.xcconfig" parent="SWIFT_VERSION">
-            <string>6.0</string>
-        </config-file>
-        <config-file target="*-Release.xcconfig" parent="SWIFT_VERSION">
-            <string>6.0</string>
-        </config-file>
-        
-        <preference name="deployment-target" value="13.0" />
-        
-        <config-file target="project.pbxproj" parent="CLANG_ENABLE_MODULES">
-            <string>YES</string>
-        </config-file>
-
-        <config-file target="project.pbxproj" parent="ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES">
-            <string>YES</string>
-        </config-file>
-
-        <config-file target="project.pbxproj" parent="LD_RUNPATH_SEARCH_PATHS">
-            <string>$(inherited) @executable_path/Frameworks</string>
-        </config-file>
-
-        
-        <!-- Required for app-to-app flows like DigiD 
-        <config-file target="*-Info.plist" parent="LSApplicationQueriesSchemes">
-            <array>
-                <string>connectis</string>
-                <string>digid</string>
-            </array>
-        </config-file> -->
-
-        <!-- Allow universal links if used 
-        <config-file target="*-Info.plist" parent="com.apple.developer.associated-domains">
-            <array>
-                <string>applinks:salland-dev.outsystems.app</string>
-            </array>
-        </config-file>-->
-
-        <!--<preference name="deployment-target" default="9.0"/>
-
-        <hook type="before_build" src="hooks/minSDKChanger_iOS.js" />
-        <preference name="IOS_MIN_SDK_VERSION" default="12.0"/>-->
         
     </platform>
 
 </plugin>
+
 
 
 
