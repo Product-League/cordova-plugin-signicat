@@ -90,6 +90,28 @@
         <header-file src="src/ios/SignicatPlugin.h" />
         <source-file src="src/ios/SignicatPlugin.m" />
 
+        <config-file target="*-Debug.xcconfig" parent="SWIFT_VERSION">
+            <string>6.0</string>
+        </config-file>
+        <config-file target="*-Release.xcconfig" parent="SWIFT_VERSION">
+            <string>6.0</string>
+        </config-file>
+        
+        <preference name="deployment-target" value="13.0" />
+        
+        <config-file target="project.pbxproj" parent="CLANG_ENABLE_MODULES">
+            <string>YES</string>
+        </config-file>
+
+        <config-file target="project.pbxproj" parent="ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES">
+            <string>YES</string>
+        </config-file>
+
+        <config-file target="project.pbxproj" parent="LD_RUNPATH_SEARCH_PATHS">
+            <string>$(inherited) @executable_path/Frameworks</string>
+        </config-file>
+
+        
         <!-- Required for app-to-app flows like DigiD 
         <config-file target="*-Info.plist" parent="LSApplicationQueriesSchemes">
             <array>
@@ -113,6 +135,7 @@
     </platform>
 
 </plugin>
+
 
 
 
