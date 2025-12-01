@@ -23,10 +23,6 @@ class SignicatPlugin: CDVPlugin {
             loginFlow: loginFlow
         )
 
-        // TODO: Perform actual login call
-        // ConnectisSDK().login(config: config)
 
-        let result = CDVPluginResult(status: .ok)
-        commandDelegate.send(result, callbackId: command.callbackId)
     }
 }
