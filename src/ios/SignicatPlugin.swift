@@ -72,34 +72,5 @@ class SignicatPlugin: CDVPlugin {
             }
         }
     }
-
-    // MARK: - Helper for Cordova
-    private func sendOK(_ message: Any) {
-        guard let cb = callbackId else { return }
-        let result = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: message)
-        commandDelegate.send(result, callbackId: cb)
-    }
-
-    private func sendError(_ msg: String, _ callbackId: String) {
-        let result = CDVPluginResult(status: CDVCommandStatus_ERROR, messageAs: msg)
-        commandDelegate.send(result, callbackId: callbackId)
-    }
 }
 
-// MARK: - Delegates
-extension SignicatPlugin: AuthenticationResponseDelegate {
-    func authenticationSucceeded(response: ConnectisAuthenticationResponse) {
-        var res: [String: Any] = [:]
-        res["issuer"] = response.issuer
-        res["accessToken"] = response.accessToken
-        res["idToken"] = response.idToken
-        res["refreshToken"] = response.refreshToken
-        sendOK(res)
-    }
-}
-
-extension SignicatPlugin: ErrorResponseDelegate {
-    func authenticationFailed(error: Error) {
-        sendError(error.localizedDescription, self.callbackId ?? "")
-    }
-}
