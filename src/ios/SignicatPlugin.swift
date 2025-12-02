@@ -16,7 +16,12 @@ class SignicatPlugin: CDVPlugin {
                         ? LoginFlow.appToApp
                         : LoginFlow.web
 
-        
+        let config = ConnectisSDKConfiguration(
+            issuer: issuer,
+            clientID: clientId,
+            redirectURI: redirectUri,
+            loginFlow: loginFlow
+        )
 
 
     }
