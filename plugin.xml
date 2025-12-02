@@ -84,7 +84,7 @@
 
     <platform name="ios">
 
-        <dependency id="cordova-plugin-add-swift-support" version="2.0.2" />
+        
     
         <framework src="src/ios/ConnectisSDK.framework" custom="true" embed="true" />
         
@@ -93,6 +93,7 @@
     </platform>
 
 </plugin>
+
 
 
 
