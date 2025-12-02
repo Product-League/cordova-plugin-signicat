@@ -84,31 +84,27 @@
 
     <platform name="ios">
 
-    <!-- Required: Enables Swift in Cordova plugins -->
-    <dependency id="cordova-plugin-add-swift-support" version="2.0.2" />
-
-    <!-- Required: Explicit Swift version for MABS 11.2 (Swift 6) -->
-    <config-file target="*-Debug.xcconfig" parent="SWIFT_VERSION">
-        <string>5.9</string>
-    </config-file>
-
-    <config-file target="*-Release.xcconfig" parent="SWIFT_VERSION">
-        <string>5.9</string>
-    </config-file>
-
-    <!-- For some MABS versions you MUST also patch project.pbxproj -->
-    <config-file target="project.pbxproj" parent="SWIFT_VERSION">
-        <string>5.9</string>
-    </config-file>
-
-    <!-- Your framework -->
-    <framework src="src/ios/ConnectisSDK.framework" custom="true" embed="true" />
+        <dependency id="cordova-plugin-add-swift-support" version="2.0.2" />
     
-    <!-- Your Swift source -->
-    <source-file src="src/ios/SignicatPlugin.swift" />
+        <config-file target="*-Debug.xcconfig" parent="SWIFT_VERSION">
+            <string>5.9</string>
+        </config-file>
+    
+        <config-file target="*-Release.xcconfig" parent="SWIFT_VERSION">
+            <string>5.9</string>
+        </config-file>
+    
+        <config-file target="project.pbxproj" parent="SWIFT_VERSION">
+            <string>5.9</string>
+        </config-file>
+    
+        <framework src="src/ios/ConnectisSDK.framework" custom="true" embed="true" />
+        
+        <source-file src="src/ios/SignicatPlugin.swift" />
         
     </platform>
 
 </plugin>
+
 
 
