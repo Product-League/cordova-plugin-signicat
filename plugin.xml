@@ -88,11 +88,12 @@
         
         <source-file src="src/ios/SignicatPlugin.swift" />
 
-        <framework src="AppAuth" type="podspec" spec="~> 1.6"/>
+        <podspec src="AppAuth" spec="~> 1.6"/>
         
     </platform>
 
 </plugin>
+
 
 
 
