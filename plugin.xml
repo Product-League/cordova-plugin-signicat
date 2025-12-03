@@ -87,10 +87,13 @@
         <framework src="src/ios/ConnectisSDK.framework" custom="true" embed="true" />
         
         <source-file src="src/ios/SignicatPlugin.swift" />
+
+        <pod name="AppAuth" version="~> 1.6" />
         
     </platform>
 
 </plugin>
+
 
 
 
