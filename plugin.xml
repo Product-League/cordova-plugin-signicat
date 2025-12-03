@@ -88,12 +88,19 @@
         
         <source-file src="src/ios/SignicatPlugin.swift" />
 
-         <framework src="AppAuth" type="podspec" />
-        <framework src="AppAuth/ExternalUserAgent" type="podspec" />
+        <podspec>
+            <config>
+                <source url="https://github.com/CocoaPods/Specs.git"/>
+            </config>
+            <pods use-frameworks="true">
+                <pod name="AppAuth" spec="~> 2.0.0" />
+            </pods>
+        </podspec>
         
     </platform>
 
 </plugin>
+
 
 
 
