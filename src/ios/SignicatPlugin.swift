@@ -35,42 +35,10 @@ class SignicatPlugin: CDVPlugin {
             brokerDigidAppAcs: brokerDigidAppAcs,
             loginFlow: loginFlow
         )
-        sdkConfig.allowDeviceAuthentication = allowDeviceAuth
 
-        // Call login
-        ConnectisSDK.logIn(
-            sdkConfiguration: sdkConfig,
-            caller: self.viewController,
-            delegate: self,
-            allowDeviceAuthentication: allowDeviceAuth,
-            errorResponseDelegate: self
-        )
-    }
 
-    @objc(enableDeviceAuth:)
-    func enableDeviceAuth(command: CDVInvokedUrlCommand) {
-        self.callbackId = command.callbackId
-        ConnectisSDK.enableDeviceAuthentication()
-        sendOK("deviceAuthEnabled")
-    }
 
-    @objc(disableDeviceAuth:)
-    func disableDeviceAuth(command: CDVInvokedUrlCommand) {
-        self.callbackId = command.callbackId
-        ConnectisSDK.disableDeviceAuthentication()
-        sendOK("deviceAuthDisabled")
-    }
 
-    @objc(getAccessToken:)
-    func getAccessToken(command: CDVInvokedUrlCommand) {
-        self.callbackId = command.callbackId
-        ConnectisSDK.getOpenIdAccessToken { token, error in
-            if let t = token {
-                self.sendOK(t)
-            } else {
-                self.sendError(error?.localizedDescription ?? "Unknown error", command.callbackId)
-            }
-        }
-    }
+
 }
 
