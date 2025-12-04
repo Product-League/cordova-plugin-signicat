@@ -37,7 +37,7 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate {
         )
 
 
-        let alert = UIAlertController(title: "LoginAppToApp", message: "This is my message.", preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "LoginAppToApp", message: "Login executed", preferredStyle: UIAlertController.Style.alert)
 
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
 
