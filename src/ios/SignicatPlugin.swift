@@ -34,7 +34,9 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate {
             loginFlow: LoginFlow.APP_TO_APP
         )
 
-        showAlert(title: "loginAppToApp", message: "Starting App-to-App login flow...")
+        Task { @MainActor in
+            self.showAlert(title: "Login", message: "Starting App-to-App login flow...")
+        }
 
         
         ConnectisSDK.logIn(
@@ -103,17 +105,17 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate {
         self.currentCommand = nil
     }
 
+    @MainActor
     func showAlert(title: String, message: String) {
-        DispatchQueue.main.async {
-            let alert = UIAlertController(
-                title: title,
-                message: message,
-                preferredStyle: .alert
-            )
-            
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            
-            self.viewController?.present(alert, animated: true, completion: nil)
-        }
+        let alert = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert
+        )
+    
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+    
+        self.viewController?.present(alert, animated: true, completion: nil)
     }
+
 }
