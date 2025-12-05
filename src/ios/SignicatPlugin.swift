@@ -52,9 +52,7 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate {
             loginFlow: LoginFlow.APP_TO_APP
         )
 
-        Task { @MainActor in
-            self.showAlert(title: "LoginAppToApp", message: "Login executed")
-        }
+        self.showAlert(title: "Login", message: "Login App-to-App triggered")
 
         ConnectisSDK.logIn(
             sdkConfiguration: configuration,
