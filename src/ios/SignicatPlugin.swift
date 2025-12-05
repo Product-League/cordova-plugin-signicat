@@ -36,7 +36,7 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate {
         let appToAppScopes = "openid idp_scoping:https://was-preprod1.digid.nl/saml/idp/metadata_app"
         let brokerDigidAppAcs = "https://pkio.broker.ng-test.nl/broker/authn/digid/digid-app-acs"
         */
-        let issuer = "https://preprodbroker.salland.nl/auth/open"
+        let issuer = "https://preprodbroker.salland.nl/broker/authn/digid"
         let clientID = "sandbox-purple-heart-392"
         let redirectURI = "https://salland-dev.outsystems.app/Adriano_Sandbox/Redirect"
         let appToAppScopes = "openid"
