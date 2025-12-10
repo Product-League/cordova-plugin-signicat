@@ -90,6 +90,18 @@
             </feature>
         </config-file>
 
+          <config-file target="*-Debug.plist" parent="com.apple.developer.associated-domains"> 
+            <array> 
+                <string>applinks:preprodbroker.salland.nl</string> 
+            </array> 
+        </config-file> 
+
+        <config-file target="*-Release.plist" parent="com.apple.developer.associated-domains"> 
+            <array> 
+                <string>applinks:preprodbroker.salland.nl</string> 
+            </array> 
+        </config-file>
+
         <framework src="src/ios/ConnectisSDK.framework" custom="true" embed="true" />
         
         <source-file src="src/ios/SignicatPlugin.swift" />
