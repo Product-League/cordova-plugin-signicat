@@ -13,7 +13,18 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate {
     @MainActor
     func loginAppToApp(command: CDVInvokedUrlCommand) {
 
-        showAlertMessage(title: "Alert", message: "Please Check Credentials before Login")
+        let toastController: UIAlertController =
+            UIAlertController(
+            title: "",
+            message: msg,
+            preferredStyle: .alert
+            )
+
+        self.viewController?.present(
+            toastController,
+            animated: true,
+            completion: nil
+        )
 
         self.currentCommand = command
 /*
@@ -128,14 +139,3 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate {
 
 }
 
-extension UIViewController{
-    
-    public func showAlertMessage(title: String, message: String){
-        
-        let alertMessagePopUpBox = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "OK", style: .default)
-        
-        alertMessagePopUpBox.addAction(okButton)
-        self.present(alertMessagePopUpBox, animated: true)
-    }
-}
