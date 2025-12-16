@@ -13,7 +13,6 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate {
     @MainActor
     func loginAppToApp(command: CDVInvokedUrlCommand) {
 
-        showMessage(messageIn: "loginAppToApp")
 
         self.currentCommand = command
 /*
