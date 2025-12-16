@@ -8,25 +8,11 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate {
 
     private var currentCommand: CDVInvokedUrlCommand?
 
-
-    @MainActor
-    private func showAlert(title: String, message: String) {
-        guard let vc = self.viewController else { return }
-
-        let alert = UIAlertController(
-            title: title,
-            message: message,
-            preferredStyle: .alert
-        )
-
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        vc.present(alert, animated: true)
-    }
-
-
     @objc(loginAppToApp:)
     @MainActor
     func loginAppToApp(command: CDVInvokedUrlCommand) {
+
+        showAlertMessage(title: "Alert", message: "Please Check Credentials before Login")
 
         self.currentCommand = command
 /*
@@ -82,20 +68,6 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate {
 
     func handleResponse(authenticationResponse: AuthenticationResponse) {
 
-
-        Task { @MainActor in
-                self.showAlert(
-                    title: "Signicat Callback",
-                    message: """
-                    handleResponse CALLED
-                    success: \(authenticationResponse.isSuccess)
-                    nameId: \(authenticationResponse.nameIdentifier ?? "nil")
-                    error: \(authenticationResponse.error?.localizedDescription ?? "none")
-                    """
-                )
-            }
-
-
         guard let command = currentCommand else { return }
 
 
@@ -141,14 +113,6 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate {
 
     func onCancel() {
 
-        Task { @MainActor in
-            self.showAlert(
-                title: "Signicat Cancel",
-                message: "Authentication was cancelled"
-            )
-        }
-
-
         guard let command = currentCommand else { return }
 
         let pluginResult = CDVPluginResult(
@@ -163,4 +127,14 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate {
 
 }
 
-
+extension UIViewController{
+    
+    public func showAlertMessage(title: String, message: String){
+        
+        let alertMessagePopUpBox = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "OK", style: .default)
+        
+        alertMessagePopUpBox.addAction(okButton)
+        self.present(alertMessagePopUpBox, animated: true)
+    }
+}
