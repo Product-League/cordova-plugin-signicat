@@ -82,6 +82,20 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate {
 
     func handleResponse(authenticationResponse: AuthenticationResponse) {
 
+
+        Task { @MainActor in
+                self.showAlert(
+                    title: "Signicat Callback",
+                    message: """
+                    handleResponse CALLED
+                    success: \(authenticationResponse.isSuccess)
+                    nameId: \(authenticationResponse.nameIdentifier ?? "nil")
+                    error: \(authenticationResponse.error?.localizedDescription ?? "none")
+                    """
+                )
+            }
+
+
         guard let command = currentCommand else { return }
 
 
@@ -126,6 +140,14 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate {
 
 
     func onCancel() {
+
+        Task { @MainActor in
+            self.showAlert(
+                title: "Signicat Cancel",
+                message: "Authentication was cancelled"
+            )
+        }
+
 
         guard let command = currentCommand else { return }
 
