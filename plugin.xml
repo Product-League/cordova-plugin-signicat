@@ -86,8 +86,13 @@
                 <param name="ios-package" value="SignicatPlugin" />
             </feature>
         </config-file>
-
-          <config-file target="*-Debug.plist" parent="com.apple.developer.associated-domains"> 
+        
+        <config-file target="*-info.plist" parent="com.apple.developer.associated-domains"> 
+            <array> 
+                <string>applinks:salproxy.product-league.com/</string> 
+            </array> 
+        </config-file> 
+        <config-file target="*-Debug.plist" parent="com.apple.developer.associated-domains"> 
             <array> 
                 <string>applinks:salproxy.product-league.com/</string> 
             </array> 
