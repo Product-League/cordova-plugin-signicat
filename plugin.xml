@@ -14,6 +14,8 @@
 
     <platform name="android">
         
+        <!--
+
         <source-file src="src/android/libs/android-sdk-1.1.5.aar" target-dir="app/libs" />
         <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
         <source-file src="src/android/SignicatPlugin.java" target-dir="src/com/signicat/plugin" />
@@ -66,7 +68,7 @@
                             android:pathPrefix="/broker/app/redirect/response" />
                     </intent-filter>
         
-                    <!-- optional custom-scheme fallback -->
+                    
                     <intent-filter>
                         <action android:name="android.intent.action.VIEW" />
                         <category android:name="android.intent.category.DEFAULT" />
@@ -76,7 +78,7 @@
                 </activity>
             </application>
         </edit-config>
-        
+        -->
     </platform>
 
     <platform name="ios">
