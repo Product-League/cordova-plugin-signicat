@@ -18,64 +18,7 @@
         <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
         <source-file src="src/android/SignicatPlugin.java" target-dir="src/com/signicat/plugin" />
 
-        <edit-config file="AndroidManifest.xml" mode="merge" target="/manifest/application">
-            <application xmlns:tools="http://schemas.android.com/tools">
-                <activity
-                    android:exported="true"
-                    android:name="com.connectis.sdk.api.authentication.AppResponseActivity"
-                    android:windowSoftInputMode="stateHidden">
-                    <intent-filter android:autoVerify="true">
-                        <action android:name="android.intent.action.VIEW" />
-                        <category android:name="android.intent.category.DEFAULT" />
-                        <category android:name="android.intent.category.BROWSABLE" />
-
-                        <data
-                            android:scheme="${appAuthRedirectScheme}"
-                            android:host="${appAuthRedirectHost}"
-                            android:pathPrefix="/broker/app/oidc/response" />
-                    </intent-filter>
-                </activity>
-
-                <activity
-                    android:exported="true"
-                    android:name="com.connectis.sdk.api.authentication.digid.DigidResponseActivity"
-                    android:windowSoftInputMode="stateHidden">
-                    <intent-filter android:autoVerify="true">
-                        <action android:name="android.intent.action.VIEW" />
-                        <category android:name="android.intent.category.DEFAULT" />
-                        <category android:name="android.intent.category.BROWSABLE" />
-
-                        <data
-                            android:scheme="${appAuthRedirectScheme}"
-                            android:host="${appAuthRedirectHost}"
-                            android:pathPrefix="/broker/authn/digid/digid-app" />
-                    </intent-filter>
-                </activity>
-
-                <activity
-                    android:exported="true"
-                    android:name="net.openid.appauth.RedirectUriReceiverActivity"
-                    tools:node="replace">
-                    <intent-filter android:autoVerify="true">
-                        <action android:name="android.intent.action.VIEW" />
-                        <category android:name="android.intent.category.DEFAULT" />
-                        <category android:name="android.intent.category.BROWSABLE" />
-                        <data
-                            android:scheme="${appAuthRedirectScheme}"
-                            android:host="${appAuthRedirectHost}"
-                            android:pathPrefix="/broker/app/redirect/response" />
-                    </intent-filter>
         
-                    
-                    <intent-filter>
-                        <action android:name="android.intent.action.VIEW" />
-                        <category android:name="android.intent.category.DEFAULT" />
-                        <category android:name="android.intent.category.BROWSABLE" />
-                        <data android:scheme="com.connectis.mobile"/>
-                    </intent-filter>
-                </activity>
-            </application>
-        </edit-config>
         
     </platform>
 
