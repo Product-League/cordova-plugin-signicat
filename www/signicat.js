@@ -5,7 +5,6 @@ module.exports = {
     exec(success, error, "Signicat", "loginAppToApp", []);
   },
 };
-*/
 
 window.handleOpenURL = function(url) {
     setTimeout(function() {
@@ -13,6 +12,10 @@ window.handleOpenURL = function(url) {
         console.log(url);
     }, 0);
 }
+*/
+
+
+console.log("RUNNING signicat.js");
 
 module.exports = {
   login: function (
