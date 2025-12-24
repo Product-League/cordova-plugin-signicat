@@ -33,12 +33,7 @@
             src="org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.1.0"
             type="gradleReference" />
 
-        <!-- 4️⃣ Exclude duplicate JetBrains annotations -->
-        <framework
-            src="org.jetbrains:annotations:23.0.0"
-            type="gradleReference"
-            custom="true" />
-        
+
 
         <activity
             android:exported="true"
