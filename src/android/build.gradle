@@ -5,14 +5,14 @@ repositories {
 }
 
 dependencies {
-   implementation(name:'android-sdk-1.1.5', ext:'aar')
+   implementation(name:'android-sdk-1.1.6', ext:'aar')
 }
 
 android {
     defaultConfig {
         manifestPlaceholders = [
             appAuthRedirectScheme: "https",
-            appAuthRedirectHost: "salland-dev.outsystems.app"
+            appAuthRedirectHost: "salproxy.product-league.com"
         ]
     }
 }
