@@ -15,8 +15,6 @@ window.handleOpenURL = function(url) {
 */
 
 
-console.log("RUNNING signicat.js");
-
 module.exports = {
   login: function (
     issuer,
