@@ -13,27 +13,27 @@
     <!--<dependency id="cordova-plugin-deeplinks" url="https://github.com/apalmaPL/cordova-plugin-deeplinks.git"/>-->
 
     <platform name="android">      
-
+<!--
         <source-file src="src/android/libs/android-sdk-1.1.6.aar" target-dir="app/libs" />
         <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
         <source-file src="src/android/SignicatPlugin.java" target-dir="src/com/signicat/plugin" />
 
-        <!-- 1️⃣ Kotlin Gradle plugin (compiler) -->
+
         <framework
             src="org.jetbrains.kotlin:kotlin-gradle-plugin:2.1.0"
             type="gradlePlugin" />
 
-        <!-- 2️⃣ Kotlin stdlib (runtime) -->
+
         <framework
             src="org.jetbrains.kotlin:kotlin-stdlib:2.1.0"
             type="gradleReference" />
 
-        <!-- 3️⃣ Kotlin stdlib JDK8 (required by many SDKs) -->
+
         <framework
             src="org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.1.0"
             type="gradleReference" />
 
-
+-->
 
         <activity
             android:exported="true"
