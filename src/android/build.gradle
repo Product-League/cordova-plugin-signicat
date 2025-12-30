@@ -12,7 +12,7 @@ android {
     defaultConfig {
         manifestPlaceholders = [
             appAuthRedirectScheme: "https",
-            appAuthRedirectHost: "salproxy.product-league.com"
+            appAuthRedirectHost: "testpilot.hollandzorg.com"
         ]
     }
 }
