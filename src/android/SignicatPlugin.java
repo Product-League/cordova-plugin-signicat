@@ -27,8 +27,7 @@ public class SignicatPlugin extends CordovaPlugin {
 
         switch (action) {
             case "login":
-                JSONObject configJson = args.getJSONObject(0);
-                login(configJson, callbackContext);
+                login(args, callbackContext);
                 return true;
             case "getAccessToken":
                 getAccessToken(callbackContext);
@@ -44,7 +43,7 @@ public class SignicatPlugin extends CordovaPlugin {
         }
     }
 
-    private void login(JSONObject json, CallbackContext callbackContext) {
+    private void login(JSONArray args, CallbackContext callbackContext) {
 
         try {
             Activity activity = cordova.getActivity();
