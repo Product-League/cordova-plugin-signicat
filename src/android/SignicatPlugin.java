@@ -68,7 +68,7 @@ public class SignicatPlugin extends CordovaPlugin {
                 public void onCancel() {
                     callbackContext.error("Signicat login cancelled");
                 }
-            }
+            };
             
 
             activity.runOnUiThread(() -> {
