@@ -75,7 +75,7 @@ public class SignicatPlugin extends CordovaPlugin {
             
 
             activity.runOnUiThread(() -> {
-                ConnectisSDK.login(
+                ConnectisSDK.Companion.login(
                     configuration,
                     activity,
                     delegate,
