@@ -18,6 +18,7 @@ import com.connectis.sdk.internal.authentication.device.authentication.DeviceAut
 import com.connectis.sdk.internal.authentication.login.LoginService;
 import com.connectis.sdk.internal.authentication.login.LoginServiceParameters;
 import com.connectis.sdk.internal.authentication.token.AccessTokenService;
+import com.connectis.sdk.internal.authentication.login.LoginFlow;
 
 
 public class SignicatPlugin extends CordovaPlugin {
@@ -45,7 +46,6 @@ public class SignicatPlugin extends CordovaPlugin {
             String scopes = args.getString(3);
             String brokerDigidAppAcs = args.getString(4);
             boolean allowDeviceAuthentication = false;
-            LoginFlow loginFlow = LoginFlow.APP_TO_APP;
 
 
             ConnectisSDKConfiguration configuration = new ConnectisSDKConfiguration(
@@ -54,13 +54,13 @@ public class SignicatPlugin extends CordovaPlugin {
                 redirectUri,
                 scopes,
                 brokerDigidAppAcs,
-                loginFlow
+                LoginFlow.APP_TO_APP
             );
 
             AuthenticationResponseDelegate delegate = new AuthenticationResponseDelegate() {
 
                 @Override
-                public void onSuccess() {
+                public void handleResponse(AuthenticationResponse response) {
                     callbackContext.success("Signicat login successful");
                 }
 
@@ -68,7 +68,8 @@ public class SignicatPlugin extends CordovaPlugin {
                 public void onCancel() {
                     callbackContext.error("Signicat login cancelled");
                 }
-            };
+            }
+            
 
             activity.runOnUiThread(() -> {
                 ConnectisSDK.login(
