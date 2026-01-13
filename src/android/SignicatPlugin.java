@@ -11,6 +11,7 @@ import com.connectis.sdk.ConnectisSDK;
 import com.connectis.sdk.api.configuration.ConnectisSDKConfiguration;
 import com.connectis.sdk.api.authentication.AccessTokenDelegate;
 import com.connectis.sdk.api.authentication.AuthenticationResponseDelegate;
+import com.connectis.sdk.api.authentication.AuthenticationResponse;
 import com.connectis.sdk.api.authentication.DeviceAuthenticationResponseDelegate;
 import com.connectis.sdk.api.authentication.ErrorResponseDelegate;
 import com.connectis.sdk.internal.authentication.device.authentication.DeviceAuthenticationService;
@@ -57,12 +58,12 @@ public class SignicatPlugin extends CordovaPlugin {
                 brokerDigidAppAcs,
                 LoginFlow.APP_TO_APP
             );
-
+            
 
             AuthenticationResponseDelegate delegate = new AuthenticationResponseDelegate() {
 
                 @Override
-                public void handleResponse() {
+                public void handleResponse(AuthenticationResponse response) {
                     callbackContext.success("Signicat login successful");
                 }
 
