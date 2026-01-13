@@ -53,6 +53,7 @@ public class SignicatPlugin extends CordovaPlugin {
             String redirectUri = args.getString(2);
             String scopes = args.getString(3);
             String brokerDigidAppAcs = args.getString(4);
+            boolean allowDeviceAuthentication = false;
 
 
             ConnectisSDKConfiguration configuration = new ConnectisSDKConfiguration(
@@ -86,8 +87,8 @@ public class SignicatPlugin extends CordovaPlugin {
                         }
                     },
                     
-                    // Allow device authentication
-                    ConnectisSDK.isDeviceAuthenticationEnabled(activity)
+                    // Don't allow device authentication
+                    allowDeviceAuthentication 
                 );
             });
                 
