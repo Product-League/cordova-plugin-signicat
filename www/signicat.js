@@ -28,7 +28,7 @@ module.exports = {
                      self.alert("Success:\r\r" + result.status);
                  },
       function (error) {
-                     self.alert("Error:\r\r");
+                     self.alert("Error:\r\r" + error);
                  },
       "Signicat",
       "loginAppToApp",
