@@ -21,7 +21,7 @@
         </config-file>
 
 
-        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+        <config-file target="AndroidManifest.xml" parent="/manifest/application/activity[@android:name='nl.salland.mijn.dev.MainActivity']">
             <attribute name="android:theme" value="@ref/0x7f0e0119" />
         </config-file>
 
