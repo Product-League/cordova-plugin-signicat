@@ -61,7 +61,7 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate {
             sdkConfiguration: configuration,
             caller: self.viewController,
             delegate: self,
-            allowDeviceAuthentication: ConnectisSDK.isDeviceAuthenticationEnabled()
+            allowDeviceAuthentication: false//ConnectisSDK.isDeviceAuthenticationEnabled()
         )
     }
 
