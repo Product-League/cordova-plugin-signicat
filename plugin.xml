@@ -20,6 +20,16 @@
             </feature>
         </config-file>
 
+        <config-file target="res/values/styles.xml" parent="/resources">
+            <style name="SignicatAppCompatTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+                <item name="windowNoTitle">true</item>
+            </style>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application/activity[@android:name='com.outsystems.android.MainActivity']">
+            <attribute name="android:theme" value="@style/SignicatAppCompatTheme" />
+        </config-file>
+
         <source-file src="src/android/libs/android-sdk-1.1.7.aar" target-dir="app/libs" />
         <source-file src="src/android/SignicatPlugin.java" target-dir="src/com/signicat/plugin" />
         <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
