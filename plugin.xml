@@ -10,121 +10,49 @@
     </js-module>
 
 
-    <!--<dependency id="cordova-plugin-deeplinks" url="https://github.com/apalmaPL/cordova-plugin-deeplinks.git"/>-->
+    <!--<dependency id="cordova.plugin.trapeze" url="https://github.com/apalmaPL/trapeze-cordova-plugin.git"/>-->
 
-    <platform name="android">      
-
+    <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="Signicat">
                 <param name="android-package" value="com.signicat.plugin.SignicatPlugin" />
             </feature>
         </config-file>
 
-<!--
-        <config-file target="AndroidManifest.xml" parent="/manifest/application/activity[@android:name='nl.salland.mijn.dev.MainActivity']">
-            <attribute name="android:theme" value="@ref/0x7f0e0119" />
+        <config-file target="app/src/main/AndroidManifest.xml" parent="/manifest/application">
+            <activity android:exported="true" android:name="com.connectis.sdk.internal.authentication.login.LoginActivity" android:theme="@style/Theme.Cordova.App.DayNight">
+                <intent-filter android:autoVerify="true">
+                    <action android:name="android.intent.action.VIEW" />
+                    <category android:name="android.intent.category.DEFAULT" />
+                    <category android:name="android.intent.category.BROWSABLE" />
+                    <data android:host="testpilot.hollandzorg.com" android:pathPrefix="/MijnSalland/Redirect" android:scheme="https" />
+                </intent-filter>
+            </activity>
         </config-file>
--->
+        <config-file target="app/src/main/AndroidManifest.xml" parent="/manifest/application">
+            <activity android:exported="true" android:name="net.openid.appauth.AuthorizationManagementActivity" android:theme="@style/Theme.Cordova.App.DayNight">
+                <intent-filter android:autoVerify="true">
+                    <action android:name="android.intent.action.VIEW" />
+                    <category android:name="android.intent.category.DEFAULT" />
+                    <category android:name="android.intent.category.BROWSABLE" />
+                    <data android:host="testpilot.hollandzorg.com" android:pathPrefix="/MijnSalland/Redirect" android:scheme="https" />
+                </intent-filter>
+            </activity>
+        </config-file>
+        <config-file target="app/src/main/AndroidManifest.xml" parent="/manifest/application">
+            <activity android:exported="true" android:name="com.connectis.sdk.api.authentication.digid.DigidResponseActivity" android:theme="@style/Theme.Cordova.App.DayNight">
+                <intent-filter android:autoVerify="true">
+                    <action android:name="android.intent.action.VIEW" />
+                    <category android:name="android.intent.category.DEFAULT" />
+                    <category android:name="android.intent.category.BROWSABLE" />
+                    <data android:host="testpilot.hollandzorg.com" android:pathPrefix="/MijnSalland/Redirect" android:scheme="https" />
+                </intent-filter>
+            </activity>
+        </config-file>
+
         <source-file src="src/android/libs/android-sdk-1.1.7.aar" target-dir="app/libs" />
         <source-file src="src/android/SignicatPlugin.java" target-dir="src/com/signicat/plugin" />
         <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
-
-
-        <activity
-            android:name=".MainActivity"
-            android:launchMode="singleTask">
-            <intent-filter android:autoVerify="true">
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:scheme="https"
-                    android:host="testpilot.hollandzorg.com"
-                    android:pathPrefix="/MijnSalland/Redirect" />
-            </intent-filter>
-        </activity>
-
-
-
-<!--
-        <framework
-            src="org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0"
-            type="gradlePlugin" />
-
-
-        <framework
-            src="org.jetbrains.kotlin:kotlin-stdlib:1.9.0"
-            type="gradleReference" />
-
-
-        <framework
-            src="org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.0"
-            type="gradleReference" />
-
-
-        <activity
-            android:exported="true"
-            android:name="com.connectis.sdk.api.authentication.AppResponseActivity"
-            android:windowSoftInputMode="stateHidden">
-            <intent-filter android:autoVerify="true">
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:scheme="https"
-                    android:host="testpilot.hollandzorg.com"
-                    android:pathPrefix="/MijnSalland/Redirect" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:exported="true"
-            android:name="com.connectis.sdk.api.authentication.digid.DigidResponseActivity"
-            android:windowSoftInputMode="stateHidden">
-            <intent-filter android:autoVerify="true">
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:scheme="https"
-                    android:host="testpilot.hollandzorg.com"
-                    android:pathPrefix="/MijnSalland/Redirect" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:exported="true"
-            android:name="net.openid.appauth.RedirectUriReceiverActivity"
-            tools:node="replace">
-            <intent-filter android:autoVerify="true">
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:scheme="https"
-                    android:host="testpilot.hollandzorg.com"
-                    android:pathPrefix="/MijnSalland/Redirect" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="nl.salland.mijn.dev"/>
-            </intent-filter>
-        </activity>
--->
-
-
     </platform>
 
     <platform name="ios">

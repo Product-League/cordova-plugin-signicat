@@ -93,3 +93,4 @@ public class SignicatPlugin extends CordovaPlugin {
 
 
 }
+
