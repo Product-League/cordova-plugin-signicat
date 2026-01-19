@@ -51,10 +51,7 @@
         </config-file>
 
         <config-file target="app/src/main/AndroidManifest.xml" parent="/manifest/application">
-            <activity
-                android:exported="true"
-                android:name="net.openid.appauth.RedirectUriReceiverActivity"
-                tools:node="replace">
+            <activity android:exported="true" android:name="net.openid.appauth.RedirectUriReceiverActivity" android:theme="@style/Theme.Cordova.App.DayNight">
                 <intent-filter android:autoVerify="true">
                     <action android:name="android.intent.action.VIEW" />
 
