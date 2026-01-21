@@ -25,7 +25,7 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate, AccessTokenDele
             return
         }
 
-        ConnectisSDK.shared.useAccessToken(
+        ConnectisSDK.useAccessToken(
             caller: viewController,
             delegate: self
         )
@@ -35,7 +35,7 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate, AccessTokenDele
 
         let result = CDVPluginResult(
             status: CDVCommandStatus_OK,
-            messageAs: accessToken.value
+            messageAs: Token.value
         )
         self.commandDelegate.send(
             result,
