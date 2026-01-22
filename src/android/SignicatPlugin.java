@@ -44,11 +44,11 @@ public class SignicatPlugin extends CordovaPlugin {
 
                 @Override
                 public void onError(@NotNull String exception) {
-                    callbackContext.error(exception);
+                    callbackContext.error("Error:getAccessToken: " + exception);
                 }
             }
         );
-        
+
     }
 
 
