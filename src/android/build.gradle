@@ -16,8 +16,7 @@ dependencies {
 android {
     defaultConfig {
         manifestPlaceholders = [
-            appAuthRedirectScheme: "https",
-            appAuthRedirectHost: "testpilot.hollandzorg.com"
+            appAuthRedirectScheme: "https"
         ]
     }
 }

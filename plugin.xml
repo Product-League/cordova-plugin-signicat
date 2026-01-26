@@ -20,13 +20,34 @@
         </config-file>
 
         <config-file target="app/src/main/AndroidManifest.xml" parent="/manifest/application">
+            <activity android:exported="true" android:name="com.connectis.sdk.api.authentication.digid.DigidResponseActivity" android:theme="@style/Theme.Cordova.App.DayNight">
+                <intent-filter android:autoVerify="true">
+                    <action android:name="android.intent.action.VIEW" />
+                    <category android:name="android.intent.category.DEFAULT" />
+                    <category android:name="android.intent.category.BROWSABLE" />
+                    <data android:host="preprodbroker.salland.nl" android:pathPrefix="/broker/authn/digid/digid-app" android:scheme="https"/>
+                </intent-filter>
+            </activity>
+        </config-file>
+
+        <config-file target="app/src/main/AndroidManifest.xml" parent="/manifest/application">
+            <activity android:name="com.connectis.sdk.api.authentication.AppResponseActivity" android:exported="true" android:theme="@style/Theme.Cordova.App.DayNight">
+                <intent-filter android:autoVerify="true">
+                    <action android:name="android.intent.action.VIEW" />
+                    <category android:name="android.intent.category.DEFAULT" />
+                    <category android:name="android.intent.category.BROWSABLE" />
+                    <data android:host="preprodbroker.salland.nl" android:pathPrefix="/broker/app/oidc/response" android:scheme="https"/>
+                </intent-filter>
+            </activity>
+        </config-file>
+
+        <config-file target="app/src/main/AndroidManifest.xml" parent="/manifest/application">
             <activity android:exported="true" android:name="net.openid.appauth.RedirectUriReceiverActivity" android:theme="@style/Theme.Cordova.App.DayNight">
                 <intent-filter android:autoVerify="true">
                     <action android:name="android.intent.action.VIEW" />
                     <category android:name="android.intent.category.DEFAULT" />
                     <category android:name="android.intent.category.BROWSABLE" />
-                    <data
-                        android:host="testpilot.hollandzorg.com" android:pathPrefix="/MijnSalland/Redirect" android:scheme="https"/>
+                    <data android:host="preprodbroker.salland.nl" android:pathPrefix="/broker/app/redirect/respons" android:scheme="https"/>
                 </intent-filter>
 
                 <intent-filter>
@@ -48,8 +69,6 @@
         </config-file>
 
 
-
-
 <!--
         <config-file target="app/src/main/AndroidManifest.xml" parent="/manifest/application">
             <activity android:exported="true" android:name="com.connectis.sdk.api.authentication.digid.DigidResponseActivity" android:theme="@style/Theme.Cordova.App.DayNight">
@@ -57,7 +76,7 @@
                     <action android:name="android.intent.action.VIEW" />
                     <category android:name="android.intent.category.DEFAULT" />
                     <category android:name="android.intent.category.BROWSABLE" />
-                    <data android:host="testpilot.hollandzorg.com" android:pathPrefix="/MijnSalland/Redirect" android:scheme="https" />
+                    <data android:host="preprodbroker.salland.nl" android:pathPrefix="/broker/authn/digid/digid-app" android:scheme="https"/>
                 </intent-filter>
             </activity>
         </config-file>
@@ -68,8 +87,7 @@
                     <action android:name="android.intent.action.VIEW" />
                     <category android:name="android.intent.category.DEFAULT" />
                     <category android:name="android.intent.category.BROWSABLE" />
-                    <data
-                        android:scheme="https" android:host="testpilot.hollandzorg.com" android:pathPrefix="/MijnSalland/Redirect" />
+                    <data android:host="preprodbroker.salland.nl" android:pathPrefix="/broker/app/oidc/response" android:scheme="https"/>
                 </intent-filter>
             </activity>
         </config-file>
@@ -80,8 +98,7 @@
                     <action android:name="android.intent.action.VIEW" />
                     <category android:name="android.intent.category.DEFAULT" />
                     <category android:name="android.intent.category.BROWSABLE" />
-                    <data
-                        android:host="testpilot.hollandzorg.com" android:pathPrefix="/MijnSalland/Redirect" android:scheme="https"/>
+                    <data android:host="preprodbroker.salland.nl" android:pathPrefix="/broker/app/redirect/respons" android:scheme="https"/>
                 </intent-filter>
 
                 <intent-filter>
@@ -92,10 +109,6 @@
                 </intent-filter>
             </activity>
         </config-file>
-
-        <activity android:name="net.openid.appauth.AuthorizationManagementActivity" android:launchMode="singleInstance" tools:node="replace"/>
-        <activity android:name="com.connectis.sdk.internal.authentication.login.LoginActivity" android:launchMode="singleInstance" android:windowSoftInputMode="stateHidden"/>
-        <activity android:name="com.connectis.sdk.internal.authentication.device.authentication.DeviceAuthenticationActivity" android:windowSoftInputMode="stateHidden"/>
 
 -->
         <source-file src="src/android/libs/android-sdk-1.1.7.aar" target-dir="app/libs" />
@@ -115,20 +128,23 @@
         <config-file target="*-info.plist" parent="com.apple.developer.associated-domains"> 
             <array> 
                 <string>applinks:salproxy.product-league.com/</string>
-                <string>applinks:testpilot.hollandzorg.com/</string> 
+                <string>applinks:testpilot.hollandzorg.com/</string>
+                <string>applinks:preprodbroker.salland.nl/</string>
             </array> 
         </config-file> 
         <config-file target="*-Debug.plist" parent="com.apple.developer.associated-domains"> 
             <array> 
                 <string>applinks:salproxy.product-league.com/</string>
-                <string>applinks:testpilot.hollandzorg.com/</string> 
+                <string>applinks:testpilot.hollandzorg.com/</string>
+                <string>applinks:preprodbroker.salland.nl/</string>
             </array> 
         </config-file> 
 
         <config-file target="*-Release.plist" parent="com.apple.developer.associated-domains"> 
             <array> 
                 <string>applinks:salproxy.product-league.com/</string>
-                <string>applinks:testpilot.hollandzorg.com/</string> 
+                <string>applinks:testpilot.hollandzorg.com/</string>
+                <string>applinks:preprodbroker.salland.nl/</string>
             </array> 
         </config-file>
 
