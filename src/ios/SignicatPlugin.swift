@@ -56,6 +56,7 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate, AccessTokenDele
     @MainActor
     func loginAppToApp(command: CDVInvokedUrlCommand) {
 
+        NSLog(@"BADRUZ!");
 
         self.currentCommand = command
 /*
