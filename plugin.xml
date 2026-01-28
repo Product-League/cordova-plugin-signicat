@@ -125,6 +125,9 @@
             <preference name="SwiftVersion" value="5" />
         </config-file>
         
+        <source-file src="src/ios/AppDelegate+ConnectisHook.m" />
+        <source-file src="src/ios/ConnectisBridge.swift" />
+
         <config-file target="*-info.plist" parent="com.apple.developer.associated-domains"> 
             <array> 
                 <string>applinks:salproxy.product-league.com/</string>
