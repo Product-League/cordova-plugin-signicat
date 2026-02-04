@@ -1,11 +1,11 @@
 import Foundation
 import ConnectisSDK
 import UIKit
-
+import Cordova
 
 
 @objc(AppDelegate_Signicat)
-extension AppDelegate {
+extension CDVAppDelegate {
 
     @objc(application:continueUserActivity:restorationHandler:)
     override open func application(_ application: UIApplication,
