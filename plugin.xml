@@ -19,6 +19,7 @@
             </feature>
         </config-file>
 
+        <!-- RESPONSE FROM THE DIGID APP -->
         <config-file target="app/src/main/AndroidManifest.xml" parent="/manifest/application">
             <activity android:exported="true" android:name="com.connectis.sdk.api.authentication.digid.DigidResponseActivity" android:theme="@style/Theme.Cordova.App.DayNight">
                 <intent-filter android:autoVerify="true">
@@ -41,6 +42,7 @@
             </activity>
         </config-file>
 
+        <!-- RESPONSE FROM THE BROWSER -->
         <config-file target="app/src/main/AndroidManifest.xml" parent="/manifest/application">
             <activity android:exported="true" android:name="net.openid.appauth.RedirectUriReceiverActivity" android:theme="@style/Theme.Cordova.App.DayNight">
                 <intent-filter android:autoVerify="true">
