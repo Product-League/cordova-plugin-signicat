@@ -115,13 +115,12 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate, AccessTokenDele
 
     func handleResponse(authenticationResponse: AuthenticationResponse) {
 
-        showMessage(messageIn: "Step1" + authenticationResponse.isSuccess)
 
         guard let command = currentCommand else { return }
 
-        showMessage(messageIn: "Step2")
 
-        let responseStr = authenticationResponse.nameIdentifier
+        let responseStr = String(describing: authenticationResponse)
+
 
         let pluginResult = CDVPluginResult(
             status: CDVCommandStatus_OK,
