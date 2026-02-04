@@ -3,28 +3,35 @@ import ConnectisSDK
 import UIKit
 import CVD
 
+
+@objc(AppDelegate_Signicat)
 extension AppDelegate {
 
-    override func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+    @objc(application:continueUserActivity:restorationHandler:)
+    override open func application(_ application: UIApplication,
+                                   continue userActivity: NSUserActivity,
+                                   restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
 
-        NSLog("APP DELEGATE!");
+        NSLog("[Signicat] continueUserActivity triggered")
 
         if ConnectisSDK.continueLogin(userActivity: userActivity) {
+            NSLog("[Signicat] continueLogin handled the URL")
             return true
         }
 
-        // Fall back to Cordova default handling
-        return super.application(
-            application,
-            continue: userActivity,
-            restorationHandler: restorationHandler
-        )
+        return super.application(application,
+                                 continue: userActivity,
+                                 restorationHandler: restorationHandler)
     }
 
-    override func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+    @objc(application:openURL:options:)
+    override open func application(_ app: UIApplication,
+                                   open url: URL,
+                                   options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
 
-        NSLog("APP DELEGATE2!");
-        // Allow Cordova + plugins to handle it
+        NSLog("[Signicat] openURL: \(url.absoluteString)")
+
         return super.application(app, open: url, options: options)
     }
 }
+
