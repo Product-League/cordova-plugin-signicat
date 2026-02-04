@@ -126,10 +126,6 @@
             </feature>
             <preference name="SwiftVersion" value="5" />
         </config-file>
-        
-        <!--<source-file src="src/ios/AppDelegate+Signicat.h" />
-        <source-file src="src/ios/AppDelegate+Signicat.m" />-->
-        <source-file src="src/ios/AppDelegate+Signicat.swift" />
 
         <config-file target="*-info.plist" parent="com.apple.developer.associated-domains"> 
             <array> 
@@ -154,8 +150,11 @@
             </array> 
         </config-file>
 
+
         <framework src="src/ios/ConnectisSDK.framework" custom="true" embed="true" />
-        
+        <!--<source-file src="src/ios/AppDelegate+Signicat.h" />
+        <source-file src="src/ios/AppDelegate+Signicat.m" />-->
+        <source-file src="src/ios/AppDelegate+Signicat.swift" />
         <source-file src="src/ios/SignicatPlugin.swift" />
 
         <podspec>

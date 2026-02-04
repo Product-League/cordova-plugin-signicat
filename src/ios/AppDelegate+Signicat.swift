@@ -1,7 +1,6 @@
 import Foundation
 import ConnectisSDK
 import UIKit
-import CVD
 
 
 @objc(AppDelegate_Signicat)
