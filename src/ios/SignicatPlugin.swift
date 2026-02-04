@@ -16,8 +16,6 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate, AccessTokenDele
 
         self.accessTokenCallbackId = command.callbackId
 
-        showMessage(messageIn: "getAccessToken")
-
         ConnectisSDK.useAccessToken(
             caller: self.viewController,
             delegate: self
@@ -173,8 +171,6 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate, AccessTokenDele
 
 
     func onCancel() {
-
-        showMessage(messageIn: "onCancel")
 
         guard let command = currentCommand else { return }
 
