@@ -1,6 +1,7 @@
 import Foundation
 import ConnectisSDK
 import UIKit
+import CVD
 
 extension AppDelegate {
 
