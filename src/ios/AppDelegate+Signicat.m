@@ -1,5 +1,5 @@
 #import "AppDelegate+Signicat.h"
-#import <ConnectisSDK/ConnectisSDK.h>
+#import <ConnectisSDK.h>
 
 @implementation AppDelegate (SignicatPlugin)
 
