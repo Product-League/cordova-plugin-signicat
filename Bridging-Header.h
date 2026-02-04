@@ -1,0 +1,1 @@
+#import <Cordova/Cordova.h>

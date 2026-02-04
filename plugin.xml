@@ -156,6 +156,8 @@
         <source-file src="src/ios/AppDelegate+Signicat.m" />-->
         <source-file src="src/ios/AppDelegate+Signicat.swift" />
         <source-file src="src/ios/SignicatPlugin.swift" />
+        <source-file src="src/ios/Bridging-Header.h" />
+        <source-file src="Bridging-Header.h" />
 
         <podspec>
             <config>
