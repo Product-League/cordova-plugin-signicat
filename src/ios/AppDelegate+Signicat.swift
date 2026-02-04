@@ -28,7 +28,7 @@ extension CDVAppDelegate {
 
         NSLog("[Signicat] openURL: \(url.absoluteString)")
 
-        return false
+        return true
     }
 }
 
