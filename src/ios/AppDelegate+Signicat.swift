@@ -22,7 +22,7 @@ extension CDVAppDelegate {
     }
 
     @objc(application:openURL:options:)
-    public override func application(_ app: UIApplication,
+    public func application(_ app: UIApplication,
                                    open url: URL,
                                    options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
 
