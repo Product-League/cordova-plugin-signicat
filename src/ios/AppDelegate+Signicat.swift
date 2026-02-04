@@ -18,19 +18,17 @@ extension CDVAppDelegate {
             return true
         }
 
-        return super.application(application,
-                                 continue: userActivity,
-                                 restorationHandler: restorationHandler)
+        return false
     }
 
     @objc(application:openURL:options:)
-    public func application(_ app: UIApplication,
+    public override func application(_ app: UIApplication,
                                    open url: URL,
                                    options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
 
         NSLog("[Signicat] openURL: \(url.absoluteString)")
 
-        return super.application(app, open: url, options: options)
+        return false
     }
 }
 
