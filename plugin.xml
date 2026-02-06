@@ -118,10 +118,8 @@
                 <pod name="AppAuth" spec="~> 2.0.0" />
             </pods>
         </podspec>
-        
-        <hook type="after_prepare" src="hooks/buildChanger.js" />
-
     </platform>
 
 </plugin>
+
 
