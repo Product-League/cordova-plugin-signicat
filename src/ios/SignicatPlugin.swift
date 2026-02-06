@@ -112,46 +112,6 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate, AccessTokenDele
 
         self.commandDelegate.send(pluginResult, callbackId: command.callbackId)
         self.currentCommand = nil
-/*
-
-        guard let nameId = authenticationResponse.nameIdentifier else {
-
-            if !authenticationResponse.isSuccess {
-                let errorMessage = authenticationResponse.error?.localizedDescription ?? "Unknown authentication error"
-
-                let pluginResult = CDVPluginResult(
-                    status: CDVCommandStatus_ERROR,
-                    messageAs: "Authentication error: \(errorMessage)"
-                )
-
-                self.commandDelegate.send(pluginResult, callbackId: command.callbackId)
-                self.currentCommand = nil
-                return
-            }
-
-            let pluginResult = CDVPluginResult(
-                status: CDVCommandStatus_ERROR,
-                messageAs: "Authentication error"
-            )
-
-            self.commandDelegate.send(pluginResult, callbackId: command.callbackId)
-            self.currentCommand = nil
-            return
-        }
-
-        let result: [String: Any] = [
-            "nameIdentifier": nameId,
-            "isSuccess": authenticationResponse.isSuccess
-        ]
-
-        let pluginResult = CDVPluginResult(
-            status: CDVCommandStatus_OK,
-            messageAs: result
-        )
-
-        self.commandDelegate.send(pluginResult, callbackId: command.callbackId)
-        self.currentCommand = nil
- */
     }
 
 
