@@ -73,7 +73,9 @@
     </platform>
 
     <platform name="ios">
-    
+
+        <dependency id="cordova-plugin-ios-app-delegate-events" url="https://github.com/psolipaPL/cordova-plugin-ios-app-delegate-events.git" />
+        
         <config-file target="config.xml" parent="/*">
             <feature name="SignicatPlugin">
                 <param name="ios-package" value="SignicatPlugin" />
@@ -121,5 +123,6 @@
     </platform>
 
 </plugin>
+
 
 
