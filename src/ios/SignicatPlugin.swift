@@ -15,7 +15,7 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate, AccessTokenDele
         NotificationCenter.default.addObserver(
           self,
           selector: #selector(continueUserActivityHandler(_:)),
-          name: NSNotification.Name(rawValue: UIApplicationContinueUserActivity),
+          name: UIApplication.didContinueUserActivityNotification,
           object: nil
         )
     }
