@@ -27,6 +27,18 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate, AccessTokenDele
         }
     }
 
+
+    /**
+    * Requests an OpenID Connect access token from the Signicat Identity Broker.
+    *
+    * On iOS the Mobile SDK exposes an API that returns a valid OpenID access
+    * token once the user has previously authenticated. This access token
+    * represents an OAuth2 authorization credential that you can use to call
+    * backend services on behalf of the authenticated user. Treat this token
+    * as a secret and never expose it to untrusted components.
+    *
+    */
+
     @objc(getAccessToken:)
     @MainActor
     func getAccessToken(command: CDVInvokedUrlCommand) {
@@ -54,18 +66,30 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate, AccessTokenDele
     }
 
     func onError(errorMessage: String) {
-
-        let result = CDVPluginResult(
-            status: CDVCommandStatus_ERROR,
-            messageAs: errorMessage
-        )
-        self.commandDelegate.send(
-            result,
-            callbackId: self.accessTokenCallbackId
-        )
-
+        guard let callbackId = self.accessTokenCallbackId else { return }
+        sendError(code:"E_ACCESS_TOKEN_EXCEPTION", message:errorMessage, callbackId: callbackId)
     }
 
+
+
+    /**
+    * Initiates the Signicat Identity Broker authentication flow.
+    *
+    * On iOS the Mobile SDK’s `login` method takes a configuration object
+    * containing issuer, client ID, redirect URI and optional scopes.
+    * It opens a browser or app-to-app flow depending on configuration,
+    * and calls back into delegate methods when complete.
+    *
+    * The SDK supports:
+    *   • A WEB login flow — browser-based authentication with universal links.
+    *   • An APP_TO_APP flow — universal linking to an external identity app (Digid).
+    *
+    * The results are sent asynchronously:
+    *   • On success, `handleResponse(...)` receives an AuthenticationResponse.
+    *   • On cancel, `onCancel()` is invoked.
+    *   • SDK errors are returned via an error handler.
+    *
+    */
 
     @objc(loginAppToApp:)
     @MainActor
@@ -83,25 +107,24 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate, AccessTokenDele
             let brokerDigidAppAcs = command.arguments[4] as? String,
             let isAppToApp = command.arguments[5] as? Bool
         else {
-            let result = CDVPluginResult(
-                status: CDVCommandStatus_ERROR,
-                messageAs: "Missing or invalid parameters"
-            )
-            self.commandDelegate.send(result, callbackId: command.callbackId)
+            sendError(code:"E_LOGIN_INVALID_ARGS", message:"Missing or invalid parameters", callbackId: command.callbackId)
             return
         }
 
-
-
-
-        let configuration = ConnectisSDKConfiguration(
-            issuer: issuer,
-            clientID: clientID,
-            redirectURI: redirectURI,
-            scopes: appToAppScopes,
-            brokerDigidAppAcs: brokerDigidAppAcs,
-            loginFlow: isAppToApp ? LoginFlow.APP_TO_APP : LoginFlow.WEB
-        )
+        let configuration: ConnectisSDKConfiguration
+        do {
+            configuration = ConnectisSDKConfiguration(
+                issuer: issuer,
+                clientID: clientID,
+                redirectURI: redirectURI,
+                scopes: appToAppScopes,
+                brokerDigidAppAcs: brokerDigidAppAcs,
+                loginFlow: isAppToApp ? LoginFlow.APP_TO_APP : LoginFlow.WEB
+            )
+        } catch {
+            sendError(code:"E_LOGIN_CONFIG", message:"Invalid login configuration: \(error.localizedDescription)", callbackId: command.callbackId)
+            return
+        }
 
 
         ConnectisSDK.logIn(
@@ -114,60 +137,120 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate, AccessTokenDele
 
 
     func handleResponse(authenticationResponse: AuthenticationResponse) {
-
-
+        NSLog("loginAppToApp handleResponse");
         guard let command = currentCommand else { return }
 
+        do{
+            // Manually build JSON dictionary
+            var json: [String: Any] = [
+                "isSuccess": authenticationResponse.isSuccess
+            ]
 
-        let responseStr = String(describing: authenticationResponse)
+            if let error = authenticationResponse.error {
+                json["error"] = error
+            } else {
+                json["error"] = NSNull()
+            }
 
+            if let nameId = authenticationResponse.nameIdentifier {
+                json["nameIdentifier"] = nameId
+            } else {
+                json["nameIdentifier"] = NSNull()
+            }
 
-        let pluginResult = CDVPluginResult(
-            status: CDVCommandStatus_OK,
-            messageAs: responseStr
-        )
+            // Convert attributes
+            var attributesJson: [[String: Any]] = []
+            for attr in authenticationResponse.attributes ?? [] {
+                attributesJson.append([
+                    "name": attr.name,
+                    "value": attr.value
+                ])
+            }
+            json["attributes"] = attributesJson
 
-        self.commandDelegate.send(pluginResult, callbackId: command.callbackId)
-        self.currentCommand = nil
+            // Convert to JSON string safely
+            var jsonString = "{}"
+            if JSONSerialization.isValidJSONObject(json),
+            let data = try? JSONSerialization.data(withJSONObject: json, options: []) {
+                jsonString = String(data: data, encoding: .utf8) ?? "{}"
+            }
+
+            let pluginResult = CDVPluginResult(
+                status: CDVCommandStatus_OK,
+                messageAs: jsonString
+            )
+
+            self.commandDelegate.send(pluginResult, callbackId: command.callbackId)
+            self.currentCommand = nil
+            
+        } catch {
+            sendError(code:"E_HANDLE_RESPONSE_EXCEPTION", message:"Error handling login response: \(error)", callbackId: command.callbackId)
+            return
+        }
+        
     }
+
 
 
     func onCancel() {
-
         guard let command = currentCommand else { return }
 
-        let pluginResult = CDVPluginResult(
-            status: CDVCommandStatus_ERROR,
-            messageAs: "Authentication was canceled!"
-        )
+        sendError(code:"E_LOGIN_CANCELED", message:"User canceled login", callbackId: command.callbackId)
 
-        self.commandDelegate.send(pluginResult, callbackId: command.callbackId)
         self.currentCommand = nil
     }
 
 
-    func showMessage(messageIn: String){
+    /**
+    * Sends a structured error response back to the Cordova layer.
+    *
+    * This helper method wraps an error code and message into a JSON object,
+    * serializes it into a JSON string, and returns it through a Cordova
+    * `CDVPluginResult` with `CDVCommandStatus_ERROR`.
+    *
+    * The JSON structure returned to JavaScript has the form:
+    * {
+    *   "code": "<error-code>",
+    *   "message": "<human-readable description>"
+    * }
+    *
+    * This method is used to standardize native iOS error reporting for:
+    *   • Login flow failures
+    *   • Access token retrieval errors
+    *   • Invalid arguments or configuration issues
+    *   • SDK-level exceptions from Signicat Mobile SDK
+    *
+    * On the JavaScript side, this allows consistent handling of all errors
+    * with predictable fields for logging or user-facing messages.
+    *
+    * - Parameters:
+    *   - code: A short machine-readable error identifier (e.g. `"LOGIN_FAILED"`).
+    *   - message: A descriptive human-readable explanation of the error.
+    *   - callbackId: The Cordova callback ID associated with the original request.
+    */
 
-        let toastController: UIAlertController =
-            UIAlertController(
-            title: "WOOOOW!",
-            message: messageIn,
-            preferredStyle: .alert
-            )
+    func sendError(code: String, message: String, callbackId: String) {
+        let errorObj: [String: Any] = [
+            "code": code,
+            "message": message
+        ]
 
-        toastController.addAction(UIAlertAction(
-            title: "OK", 
-            style: .default, 
-            handler: { _ in 
-                print("OK tap") 
-            }))
+        // Convert to JSON string safely
+        var jsonString = "{}"
+        if JSONSerialization.isValidJSONObject(errorObj),
+        let data = try? JSONSerialization.data(withJSONObject: errorObj, options: []) {
+            jsonString = String(data: data, encoding: .utf8) ?? "{}"
+        }
 
-        self.viewController?.present(
-            toastController,
-            animated: true,
-            completion: nil
+        let pluginResult = CDVPluginResult(
+            status: CDVCommandStatus_ERROR,
+            messageAs: jsonString
         )
 
+        self.commandDelegate.send(
+            pluginResult, 
+            callbackId: callbackId
+        )
     }
 
 }
