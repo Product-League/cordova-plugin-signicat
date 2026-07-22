@@ -77,13 +77,13 @@
 
     <platform name="ios">
 
-        <dependency id="cordova-plugin-ios-app-delegate-events" url="https://github.com/psolipaPL/cordova-plugin-ios-app-delegate-events.git" />
+        <dependency id="cordova-plugin-ios-app-delegate-events" url="https://github.com/Product-League/cordova-plugin-ios-app-delegate-events.git" />
         
         <config-file target="config.xml" parent="/*">
             <feature name="SignicatPlugin">
                 <param name="ios-package" value="SignicatPlugin" />
             </feature>
-            <preference name="SwiftVersion" value="5" />
+            <preference name="UseSwiftLanguageVersion" value="6.2.1" />
         </config-file>
 
         <config-file target="*-info.plist" parent="com.apple.developer.associated-domains"> 
